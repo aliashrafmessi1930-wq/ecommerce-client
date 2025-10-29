@@ -157,7 +157,7 @@ const Header = () => {
       {/* Bottom Navigation */}
       <div className="w-full bg-darkText text-whiteText">
         <Container className="py-2 max-w-4xl flex items-center gap-5 justify-between">
-          <Menu>
+         <Menu>
             <MenuButton className="inline-flex items-center gap-2 rounded-md border border-gray-400 hover:border-white py-1.5 px-3 font-semibold text-gray-300 hover:text-whiteText">
               Select Category <FaChevronDown className="text-base mt-1" />
             </MenuButton>
@@ -169,19 +169,22 @@ const Header = () => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <MenuItems className="w-52 origin-top-right rounded-xl border border-white/5 bg-black p-1 text-sm/6 text-gray-300 focus:outline-none hover:text-white z-50">
+              <MenuItems
+                anchor="bottom end"
+                className="w-52 origin-top-right rounded-xl border border-white/5 bg-black p-1 text-sm/6 text-gray-300 [--anchor-gap:var(--spacing-1)] focus:outline-none hover:text-white z-50"
+              >
                 {categories.map((item) => (
-                  <MenuItem key={item._id}>
+                  <MenuItem key={item?._id}>
                     <Link
-                      to={`/category/${item._base}`}
-                      className="flex w-full items-center gap-2 rounded-lg py-2 px-3 hover:bg-white/20 tracking-wide"
+                      to={`/category/${item?._base}`}
+                      className="flex w-full items-center gap-2 rounded-lg py-2 px-3 data-[focus]:bg-white/20 tracking-wide"
                     >
                       <img
-                        src={item.image}
+                        src={item?.image}
                         alt="categoryImage"
                         className="w-6 h-6 rounded-md"
                       />
-                      {item.name}
+                      {item?.name}
                     </Link>
                   </MenuItem>
                 ))}
